@@ -61,6 +61,10 @@ fs.writeFileSync(path.join(paths.bp_items, "sniper_rifle.json"), JSON.stringify(
         "sound": "custom:sniper_fire",
         "consume_projectile": true
       }
+      "minecraft:enchantable": {
+        "slot": "bow",
+        "value" 1,
+      }
     }
   }
 }, null, 2));
