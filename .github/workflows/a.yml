@@ -20,7 +20,7 @@ jobs:
       - name: Run generator
         run: |
           npm install sox
-          node A.js
+          node a.js
 
       - name: Commit and Push
         run: |
