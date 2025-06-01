@@ -17,10 +17,19 @@ jobs:
         with:
           node-version: 18
 
+      - name: Install sox (with ogg/play support)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sox libsox-fmt-all
+
       - name: Run generator
         run: |
-          npm install sox
           node a.js
+
+      # (任意) 生成された音を実際に再生してみる例
+      # ただし、GitHub Actions上で音は聞こえません
+      # ローカルのLinux環境で再生する場合は下記コマンドを使ってください
+      # play resource_packs/sniper_rp/sounds/sniper_fire.ogg
 
       - name: Commit and Push
         run: |
