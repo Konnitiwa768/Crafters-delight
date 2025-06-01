@@ -1,0 +1,26 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:item": {
+    "description": {
+      "identifier": "custom:sakura_shuriken",
+      "category": "equipment"
+    },
+    "components": {
+      "minecraft:icon": "sakura_shuriken",
+      "minecraft:display_name": { "value": "§d桜手裏剣" },
+      "minecraft:use_duration": 1,
+      "minecraft:cooldown": {
+        "category": "weapon",
+        "duration": 5
+      },
+      "minecraft:damage": { "value": 5 },
+      "minecraft:durability": 50,
+      "minecraft:shoot": {
+        "projectile": "custom:sakura_shuriken_projectile",
+        "launch_power": 2,
+        "sound": "custom:shuriken_throw",
+        "consume_projectile": false
+      }
+    }
+  }
+}
