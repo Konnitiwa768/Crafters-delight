@@ -6,17 +6,32 @@ function ensureDir(dir) {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 }
 
-// === ベースパス ===
-const bp = "behavior_packs/sniper_bp";
-const rp = "resource_packs/sniper_rp";
+function delDir(dir) {
+  if (fs.existsSync(dir)) fs.rmSync(dir, { recursive: true, force: true });
+}
 
-// === パス ===
+// === 前のsniper系削除 ===
+delDir("sniper_rp");
+delDir("sniper_bp");
+
+// === texture移動 ===
+const oldTex = "sniper_rp/textures/item/sniper_rifle.png";
+const newTex = "Crafters_delight_rp/textures/item/sniper_rifle.png";
+if (fs.existsSync(oldTex)) {
+  ensureDir(path.dirname(newTex));
+  fs.copyFileSync(oldTex, newTex);
+}
+
+// === 新パス定義 ===
+const bp = "Crafters_delight_bp";
+const rp = "Crafters_delight_rp";
+
 const paths = {
   bp_items: path.join(bp, "items"),
   rp_models: path.join(rp, "models/item"),
   rp_textures: path.join(rp, "textures/item"),
   rp_sounds: path.join(rp, "sounds"),
-  rp_lang: path.join(rp, "texts")
+  rp_lang: path.join(rp, "texts"),
 };
 
 // === ディレクトリ作成 ===
@@ -50,18 +65,18 @@ fs.writeFileSync(path.join(paths.bp_items, "sniper_rifle.json"), JSON.stringify(
   }
 }, null, 2));
 
-// === resource_packs/models/item/sniper_rifle.json ===
+// === models/item/sniper_rifle.json ===
 fs.writeFileSync(path.join(paths.rp_models, "sniper_rifle.json"), JSON.stringify({
   "parent": "builtin/generated",
   "textures": { "layer0": "textures/item/sniper_rifle" },
   "elements": [
-    { "from": [2, 4, 0], "to": [14, 6, 2], "faces": { "north": { "texture": "#layer0" } } }, // 銃身
-    { "from": [1, 4.5, 0], "to": [2, 5, 1], "faces": { "north": { "texture": "#layer0" } } }, // トリガー
-    { "from": [10, 6, 1], "to": [13, 7, 2], "faces": { "north": { "texture": "#layer0" } } }  // スコープ
+    { "from": [2, 4, 0], "to": [14, 6, 2], "faces": { "north": { "texture": "#layer0" } } },
+    { "from": [1, 4, 0], "to": [2, 5, 1], "faces": { "north": { "texture": "#layer0" } } },
+    { "from": [4, 6, 1], "to": [13, 8, 2], "faces": { "north": { "texture": "#layer0" } } }
   ]
 }, null, 2));
 
-// === resource_packs/sounds.json ===
+// === sounds.json ===
 fs.writeFileSync(path.join(rp, "sounds.json"), JSON.stringify({
   "custom:sniper_fire": {
     "category": "player",
@@ -69,14 +84,11 @@ fs.writeFileSync(path.join(rp, "sounds.json"), JSON.stringify({
   }
 }, null, 2));
 
-// === resource_packs/textures/item/sniper_rifle.png ===
-fs.writeFileSync(path.join(paths.rp_textures, "sniper_rifle.png"), Buffer.alloc(256)); // ダミー
-
-// === resource_packs/texts/en_US.lang / ja_JP.lang ===
+// === lang ===
 fs.writeFileSync(path.join(paths.rp_lang, "en_US.lang"), `item.custom.sniper_rifle.name=Sniper Rifle\n`);
 fs.writeFileSync(path.join(paths.rp_lang, "ja_JP.lang"), `item.custom.sniper_rifle.name=スナイパーライフル\n`);
 
-// === OGG: 金属音（sox synth） ===
+// === OGG生成 ===
 const oggPath = path.join(paths.rp_sounds, "sniper_fire.ogg");
 const result = spawnSync("sox", [
   "-n", oggPath,
@@ -86,5 +98,5 @@ const result = spawnSync("sox", [
 if (result.error) {
   console.error("⚠ sox による音声生成に失敗しました。sox をインストールしてください。");
 } else {
-  console.log("✅ スナイパーライフルのアドオンが生成されました。");
+  console.log("✅ Crafters_delight のスナイパーライフル生成が完了しました。");
 }
