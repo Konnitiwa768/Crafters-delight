@@ -1,0 +1,30 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:item": {
+    "description": {
+      "identifier": "custom:sniper_rifle",
+      "category": "equipment"
+    },
+    "components": {
+      "minecraft:icon": "sniper_rifle",
+      "minecraft:display_name": {
+        "value": "§lスナイパーライフル"
+      },
+      "minecraft:use_duration": 100,
+      "minecraft:cooldown": {
+        "category": "weapon",
+        "duration": 100
+      },
+      "minecraft:damage": {
+        "value": 1
+      },
+      "minecraft:durability": 350,
+      "minecraft:shoot": {
+        "projectile": "minecraft:arrow",
+        "launch_power": 3,
+        "sound": "custom:sniper_fire",
+        "consume_projectile": true
+      }
+    }
+  }
+}

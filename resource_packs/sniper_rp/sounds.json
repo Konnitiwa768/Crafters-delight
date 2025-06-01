@@ -1,0 +1,12 @@
+{
+  "custom:sniper_fire": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "sounds/sniper_fire",
+        "volume": 1,
+        "pitch": 1
+      }
+    ]
+  }
+}
