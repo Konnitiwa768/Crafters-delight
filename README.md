@@ -1,3 +1,3 @@
 # Crafters-delight
 https://chatgpt.com https://google.com
-https://konnitiwa768.github.io/Crafters-Delight/index.html
+https://konnitiwa768.github.io/Crafters-delight/index.html
