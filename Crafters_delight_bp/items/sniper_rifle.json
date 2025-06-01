@@ -24,6 +24,10 @@
         "launch_power": 3,
         "sound": "custom:sniper_fire",
         "consume_projectile": true
+      },
+      "minecraft:camera": {
+        "zoom": true,
+        "type": "tag:sniper_zoom"
       }
     }
   }
